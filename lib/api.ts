@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { CreateNoteValues, Note } from "../../types/note";
+import type { CreateNoteValues, Note } from "../types/note";
 import toast from "react-hot-toast";
 
 axios.defaults.baseURL = "https://notehub-public.goit.study/api";

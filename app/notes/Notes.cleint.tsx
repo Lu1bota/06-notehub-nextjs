@@ -5,7 +5,7 @@ import NoteList from "../../components/NoteList/NoteList";
 import Pagination from "../../components/Pagination/Pagination";
 import SearchBox from "../../components/SearchBox/SearchBox";
 import css from "./NotePage.module.css";
-import { fetchNotes } from "../lib/api";
+import { fetchNotes } from "../../lib/api";
 import { useState } from "react";
 import { useDebounce } from "use-debounce";
 import NoteModal from "../../components/NoteModal/NoteModal";
@@ -42,7 +42,7 @@ export default function NotesClient() {
 
   return (
     <div className={css.app}>
-      <header className={css.toolbar}>
+      <div className={css.toolbar}>
         <SearchBox value={query} onChange={handleChange} />
         {totalPage > 1 && (
           <Pagination
@@ -54,7 +54,7 @@ export default function NotesClient() {
         <button className={css.button} onClick={toggleModal}>
           Create note +
         </button>
-      </header>
+      </div>
 
       {isLoading && <Loader />}
 
