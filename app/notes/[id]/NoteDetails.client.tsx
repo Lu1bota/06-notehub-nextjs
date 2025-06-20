@@ -21,22 +21,23 @@ export default function NoteDetailsClient() {
     refetchOnMount: false,
   });
 
-  const initialNote = note ?? { title: "", content: "", createdAt: "" };
-
   return (
     <>
       {isLoading && <Loader />}
       {isError && !note && <ErrorMessage error={error} />}
-      <div className={css.container}>
-        <div className={css.item}>
-          <div className={css.header}>
-            <h2>{initialNote.title}</h2>
-            <button className={css.editBtn}>Edit note</button>
+      {note && (
+        <div className={css.container}>
+          <div className={css.item}>
+            <div className={css.header}>
+              <h2>{note.title}</h2>
+              <p className={css.tag}>{String(note.tag)}</p>
+              <button className={css.editBtn}>Edit note</button>
+            </div>
+            <p className={css.content}>{note.content}</p>
+            <p className={css.date}>Created date: {note.createdAt}</p>
           </div>
-          <p className={css.content}>{initialNote.content}</p>
-          <p className={css.date}>Created date: {initialNote.createdAt}</p>
         </div>
-      </div>
+      )}
     </>
   );
 }

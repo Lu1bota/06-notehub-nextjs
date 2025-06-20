@@ -2,7 +2,7 @@ export interface Note {
   id: number;
   title: string;
   content: string;
-  tag: "Work" | "Personal" | "Meeting" | "Shopping" | "Todo";
+  tag: Tag;
   createdAt: string;
   updatedAt: string;
 }
@@ -10,10 +10,9 @@ export interface Note {
 export interface CreateNoteValues {
   title: string;
   content?: string;
-  tag: "Work" | "Personal" | "Meeting" | "Shopping" | "Todo";
+  tag: Tag;
 }
 
-export interface FetchNotesValues {
-  notes: Note[];
-  totalPages: number;
-}
+type Tag = {
+  tag: "Work" | "Personal" | "Meeting" | "Shopping" | "Todo";
+};
