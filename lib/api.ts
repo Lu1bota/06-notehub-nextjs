@@ -1,13 +1,8 @@
 import axios from "axios";
-import type { CreateNoteValues, Note } from "../types/note";
+import type { CreateNoteValues, FetchNotesValues, Note } from "../types/note";
 import toast from "react-hot-toast";
 
 axios.defaults.baseURL = "https://notehub-public.goit.study/api";
-
-interface FetchNotesValues {
-  notes: Note[];
-  totalPages: number;
-}
 
 interface ParamsTypes {
   page: number;
@@ -78,7 +73,7 @@ export async function deleteNote(id: number): Promise<Note | undefined> {
 
 export default async function fetchNoteId(id: number) {
   try {
-    const res = await axios(`notes/${id}`, {
+    const res = await axios<Note>(`notes/${id}`, {
       headers: {
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
       },

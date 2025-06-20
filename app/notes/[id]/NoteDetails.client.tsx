@@ -16,23 +16,25 @@ export default function NoteDetailsClient() {
     isError,
     error,
   } = useQuery({
-    queryKey: ["notes", noteId],
+    queryKey: ["note", noteId],
     queryFn: () => fetchNoteId(noteId),
     refetchOnMount: false,
   });
 
+  const initialNote = note ?? { title: "", content: "", createdAt: "" };
+
   return (
     <>
       {isLoading && <Loader />}
-      {isError && !note && <ErrorMessage message={error.message} />}
+      {isError && !note && <ErrorMessage error={error} />}
       <div className={css.container}>
         <div className={css.item}>
           <div className={css.header}>
-            <h2>{note.title}</h2>
+            <h2>{initialNote.title}</h2>
             <button className={css.editBtn}>Edit note</button>
           </div>
-          <p className={css.content}>{note.content}</p>
-          <p className={css.date}>Created date: {note.createdAt}</p>
+          <p className={css.content}>{initialNote.content}</p>
+          <p className={css.date}>Created date: {initialNote.createdAt}</p>
         </div>
       </div>
     </>

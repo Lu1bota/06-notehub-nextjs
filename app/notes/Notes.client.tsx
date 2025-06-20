@@ -12,9 +12,17 @@ import NoteModal from "../../components/NoteModal/NoteModal";
 import Loader from "../loading";
 import ErrorMessage from "./error";
 
-export default function NotesClient() {
-  const [query, setQuery] = useState<string>("");
-  const [currentPage, setCurrentPage] = useState<number>(1);
+interface NotesClientProps {
+  initialQuery: string;
+  initialPage: number;
+}
+
+export default function NotesClient({
+  initialQuery,
+  initialPage,
+}: NotesClientProps) {
+  const [query, setQuery] = useState<string>(initialQuery);
+  const [currentPage, setCurrentPage] = useState<number>(initialPage);
   const [debounceQuery] = useDebounce(query, 500);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
@@ -58,7 +66,7 @@ export default function NotesClient() {
 
       {isLoading && <Loader />}
 
-      {isError && <ErrorMessage message={error.message} />}
+      {isError && <ErrorMessage error={error} />}
       {isSuccess && <NoteList notes={notesRequest} />}
       {isModalOpen && <NoteModal onClose={closeModal} />}
     </div>

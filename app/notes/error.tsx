@@ -3,14 +3,14 @@
 import css from "./error.module.css";
 
 interface ErrorMessageProps {
-  message: string;
+  error: Error;
 }
 
-export default function ErrorMessage({ message }: ErrorMessageProps) {
+export default function ErrorMessage({ error }: ErrorMessageProps) {
   return (
     <div className={css.error}>
       <strong>⚠️ Error</strong>
-      <p>{message}</p>
+      <p>{error.message}</p>
     </div>
   );
 }
