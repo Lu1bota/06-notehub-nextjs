@@ -13,6 +13,4 @@ export interface CreateNoteValues {
   tag: Tag;
 }
 
-type Tag = {
-  tag: "Work" | "Personal" | "Meeting" | "Shopping" | "Todo";
-};
+type Tag = "Work" | "Personal" | "Meeting" | "Shopping" | "Todo";
